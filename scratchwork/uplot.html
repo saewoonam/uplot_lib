@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://leeoniya.github.io/uPlot/dist/uPlot.min.css">
+<script src="https://leeoniya.github.io/uPlot/dist/uPlot.iife.js"></script>
+
+<div id="plot"></div>
+
+<script>
+data = [[1,2,3, 4]]
+y = new Array(4);
+y[2] = 6
+y[3] = 7
+data.push(y)
+    // [4, null, 6, 7]];
+
+options = {
+            title: '',
+            width: 750,
+            height: 300,
+            scales: {
+                x: {
+                    time: false,
+                },
+                'y': {
+                    auto: true,
+                },
+            },
+            series: [
+                {'label':'x'},
+                {'label': 'y',
+                    'stroke': 'red',
+                    // 'paths': u => null,
+                    'points': { 'space': 0, 'size': 10},
+                },
+            ],
+        };
+console.log(options)
+for (i=1; i<data.length; i++) {
+    options['series'][i]["paths"] = u => null;
+}
+
+u2 = new uPlot(options, data, document.getElementById("plot"))
+</script>
